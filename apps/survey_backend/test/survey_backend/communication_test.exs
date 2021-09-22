@@ -126,4 +126,126 @@ defmodule SurveyBackend.CommunicationTest do
       assert %Ecto.Changeset{} = Communication.change_emails(emails)
     end
   end
+
+  describe "email" do
+    alias SurveyBackend.Communication.Notifications
+
+    @valid_attrs %{channel: "some channel", message: "some message", status: true}
+    @update_attrs %{channel: "some updated channel", message: "some updated message", status: false}
+    @invalid_attrs %{channel: nil, message: nil, status: nil}
+
+    def notifications_fixture(attrs \\ %{}) do
+      {:ok, notifications} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Communication.create_notifications()
+
+      notifications
+    end
+
+    test "list_email/0 returns all email" do
+      notifications = notifications_fixture()
+      assert Communication.list_email() == [notifications]
+    end
+
+    test "get_notifications!/1 returns the notifications with given id" do
+      notifications = notifications_fixture()
+      assert Communication.get_notifications!(notifications.id) == notifications
+    end
+
+    test "create_notifications/1 with valid data creates a notifications" do
+      assert {:ok, %Notifications{} = notifications} = Communication.create_notifications(@valid_attrs)
+      assert notifications.channel == "some channel"
+      assert notifications.message == "some message"
+      assert notifications.status == true
+    end
+
+    test "create_notifications/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Communication.create_notifications(@invalid_attrs)
+    end
+
+    test "update_notifications/2 with valid data updates the notifications" do
+      notifications = notifications_fixture()
+      assert {:ok, %Notifications{} = notifications} = Communication.update_notifications(notifications, @update_attrs)
+      assert notifications.channel == "some updated channel"
+      assert notifications.message == "some updated message"
+      assert notifications.status == false
+    end
+
+    test "update_notifications/2 with invalid data returns error changeset" do
+      notifications = notifications_fixture()
+      assert {:error, %Ecto.Changeset{}} = Communication.update_notifications(notifications, @invalid_attrs)
+      assert notifications == Communication.get_notifications!(notifications.id)
+    end
+
+    test "delete_notifications/1 deletes the notifications" do
+      notifications = notifications_fixture()
+      assert {:ok, %Notifications{}} = Communication.delete_notifications(notifications)
+      assert_raise Ecto.NoResultsError, fn -> Communication.get_notifications!(notifications.id) end
+    end
+
+    test "change_notifications/1 returns a notifications changeset" do
+      notifications = notifications_fixture()
+      assert %Ecto.Changeset{} = Communication.change_notifications(notifications)
+    end
+  end
+
+  describe "channel" do
+    alias SurveyBackend.Communication.Channels
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def channels_fixture(attrs \\ %{}) do
+      {:ok, channels} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Communication.create_channels()
+
+      channels
+    end
+
+    test "list_channel/0 returns all channel" do
+      channels = channels_fixture()
+      assert Communication.list_channel() == [channels]
+    end
+
+    test "get_channels!/1 returns the channels with given id" do
+      channels = channels_fixture()
+      assert Communication.get_channels!(channels.id) == channels
+    end
+
+    test "create_channels/1 with valid data creates a channels" do
+      assert {:ok, %Channels{} = channels} = Communication.create_channels(@valid_attrs)
+      assert channels.name == "some name"
+    end
+
+    test "create_channels/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Communication.create_channels(@invalid_attrs)
+    end
+
+    test "update_channels/2 with valid data updates the channels" do
+      channels = channels_fixture()
+      assert {:ok, %Channels{} = channels} = Communication.update_channels(channels, @update_attrs)
+      assert channels.name == "some updated name"
+    end
+
+    test "update_channels/2 with invalid data returns error changeset" do
+      channels = channels_fixture()
+      assert {:error, %Ecto.Changeset{}} = Communication.update_channels(channels, @invalid_attrs)
+      assert channels == Communication.get_channels!(channels.id)
+    end
+
+    test "delete_channels/1 deletes the channels" do
+      channels = channels_fixture()
+      assert {:ok, %Channels{}} = Communication.delete_channels(channels)
+      assert_raise Ecto.NoResultsError, fn -> Communication.get_channels!(channels.id) end
+    end
+
+    test "change_channels/1 returns a channels changeset" do
+      channels = channels_fixture()
+      assert %Ecto.Changeset{} = Communication.change_channels(channels)
+    end
+  end
 end

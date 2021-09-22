@@ -32,6 +32,8 @@ defmodule SurveyBackendWeb.Router do
      resources "/email", EmailsController, except: [:new, :edit]
      resources "/sms", SmssController, except: [:new, :edit]
      resources "/activation", ActivationsController, except: [:new, :edit]
+     resources "/channel", ChannelsController, except: [:new, :edit]
+     resources "/notification", NotificationsController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
