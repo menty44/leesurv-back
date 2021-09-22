@@ -20,9 +20,11 @@ defmodule SurveyBackendWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", SurveyBackendWeb do
-  #   pipe_through :api
-  # end
+   scope "/api", SurveyBackendWeb do
+     pipe_through :api
+     resources "/role", RolesController, except: [:new, :edit]
+     resources "/permission", PermissionsController, except: [:new, :edit]
+   end
 
   # Enables LiveDashboard only for development
   #
