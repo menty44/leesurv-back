@@ -581,4 +581,100 @@ defmodule SurveyBackend.Usermanagement do
   def change_profiles(%Profiles{} = profiles, attrs \\ %{}) do
     Profiles.changeset(profiles, attrs)
   end
+
+  alias SurveyBackend.Usermanagement.Menus
+
+  @doc """
+  Returns the list of menu.
+
+  ## Examples
+
+      iex> list_menu()
+      [%Menus{}, ...]
+
+  """
+  def list_menu do
+    Repo.all(Menus)
+  end
+
+  @doc """
+  Gets a single menus.
+
+  Raises `Ecto.NoResultsError` if the Menus does not exist.
+
+  ## Examples
+
+      iex> get_menus!(123)
+      %Menus{}
+
+      iex> get_menus!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_menus!(id), do: Repo.get!(Menus, id)
+
+  @doc """
+  Creates a menus.
+
+  ## Examples
+
+      iex> create_menus(%{field: value})
+      {:ok, %Menus{}}
+
+      iex> create_menus(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_menus(attrs \\ %{}) do
+    %Menus{}
+    |> Menus.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a menus.
+
+  ## Examples
+
+      iex> update_menus(menus, %{field: new_value})
+      {:ok, %Menus{}}
+
+      iex> update_menus(menus, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_menus(%Menus{} = menus, attrs) do
+    menus
+    |> Menus.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a menus.
+
+  ## Examples
+
+      iex> delete_menus(menus)
+      {:ok, %Menus{}}
+
+      iex> delete_menus(menus)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_menus(%Menus{} = menus) do
+    Repo.delete(menus)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking menus changes.
+
+  ## Examples
+
+      iex> change_menus(menus)
+      %Ecto.Changeset{data: %Menus{}}
+
+  """
+  def change_menus(%Menus{} = menus, attrs \\ %{}) do
+    Menus.changeset(menus, attrs)
+  end
 end
