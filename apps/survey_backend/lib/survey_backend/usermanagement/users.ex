@@ -14,13 +14,16 @@ defmodule SurveyBackend.Usermanagement.Users do
     field :type, :string
 
     has_one :account, SurveyBackend.Usermanagement.Account
+    has_one :roles, SurveyBackend.Usermanagement.Roles
     has_one :profile, SurveyBackend.Usermanagement.Profiles
+
     has_many :smss, SurveyBackend.Communication.Smss
     has_many :emails, SurveyBackend.Communication.Emails
     has_many :notifications, SurveyBackend.Communication.Notifications
 
     belongs_to :organizations, SurveyBackend.Organization.Organizations
-#    has_one :userroles, Blog.Comment
+
+    many_to_many :menus, SurveyBackend.Usermanagement.Menus, join_through: "role_permissions"
 
     timestamps()
   end

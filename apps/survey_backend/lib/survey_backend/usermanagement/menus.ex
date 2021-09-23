@@ -7,6 +7,8 @@ defmodule SurveyBackend.Usermanagement.Menus do
     field :description, :string
     field :name, :string
 
+    many_to_many :user, SurveyBackend.Usermanagement.Users, join_through: "role_permissions"
+
     timestamps()
   end
 
