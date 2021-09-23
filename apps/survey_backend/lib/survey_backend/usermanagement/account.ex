@@ -5,6 +5,7 @@ defmodule SurveyBackend.Usermanagement.Account do
   schema "account" do
     field :code, :string
 
+    belongs_to :user, SurveyBackend.Usermanagement.Users
     timestamps()
   end
 

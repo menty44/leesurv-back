@@ -6,6 +6,7 @@ defmodule SurveyBackend.Communication.Smss do
     field :message, :string
     field :phone, :string
 
+    belongs_to :users, SurveyBackend.Usermanagement.Users
     timestamps()
   end
 

@@ -1,4 +1,5 @@
 defmodule SurveyBackend.Usermanagement.Users do
+  alias SurveyBackend.Usermanagement
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,6 +11,16 @@ defmodule SurveyBackend.Usermanagement.Users do
     field :phone, :string
     field :status, :boolean, default: false
     field :verified, :string
+    field :type, :string
+
+    has_one :account, SurveyBackend.Usermanagement.Account
+    has_one :profile, SurveyBackend.Usermanagement.Profiles
+    has_many :smss, SurveyBackend.Communication.Smss
+    has_many :emails, SurveyBackend.Communication.Emails
+    has_many :notifications, SurveyBackend.Communication.Notifications
+
+    belongs_to :organizations, SurveyBackend.Organization.Organizations
+#    has_one :userroles, Blog.Comment
 
     timestamps()
   end
@@ -17,7 +28,7 @@ defmodule SurveyBackend.Usermanagement.Users do
   @doc false
   def changeset(users, attrs) do
     users
-    |> cast(attrs, [:firstname, :lastname, :gender, :phone, :email, :status, :verified])
-    |> validate_required([:firstname, :lastname, :gender, :phone, :email, :status, :verified])
+    |> cast(attrs, [:firstname, :lastname, :gender, :phone, :email, :status, :verified, :type])
+    |> validate_required([:firstname, :lastname, :gender, :phone, :email, :status, :verified, :type])
   end
 end

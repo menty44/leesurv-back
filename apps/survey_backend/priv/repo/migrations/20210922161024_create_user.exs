@@ -10,6 +10,7 @@ defmodule SurveyBackend.Repo.Migrations.CreateUser do
       add :email, :string
       add :status, :boolean, default: false, null: false
       add :verified, :string
+      add :type, :string
 
       timestamps()
     end

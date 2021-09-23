@@ -7,6 +7,9 @@ defmodule SurveyBackend.Communication.Notifications do
     field :message, :string
     field :status, :boolean, default: false
 
+    belongs_to :users, SurveyBackend.Usermanagement.Users
+    belongs_to :organizations, SurveyBackend.Organization.Organizations
+
     timestamps()
   end
 

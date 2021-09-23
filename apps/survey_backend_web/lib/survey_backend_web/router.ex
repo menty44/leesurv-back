@@ -20,20 +20,27 @@ defmodule SurveyBackendWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-   scope "/api", SurveyBackendWeb do
+   scope "/auth", SurveyBackendWeb do
      pipe_through :api
      resources "/role", RolesController, except: [:new, :edit]
      resources "/permission", PermissionsController, except: [:new, :edit]
      resources "/menu", MenusController, except: [:new, :edit]
-     resources "/country", CountriesController, except: [:new, :edit]
      resources "/profile", ProfilesController, except: [:new, :edit]
      resources "/user", UsersController, except: [:new, :edit]
      resources "/account", AccountController, except: [:new, :edit]
-     resources "/email", EmailsController, except: [:new, :edit]
-     resources "/sms", SmssController, except: [:new, :edit]
-     resources "/activation", ActivationsController, except: [:new, :edit]
-     resources "/channel", ChannelsController, except: [:new, :edit]
-     resources "/notification", NotificationsController, except: [:new, :edit]
+  end
+
+  scope "/api", SurveyBackendWeb do
+    pipe_through :api
+    resources "/email", EmailsController, except: [:new, :edit]
+    resources "/sms", SmssController, except: [:new, :edit]
+    resources "/activation", ActivationsController, except: [:new, :edit]
+    resources "/channel", ChannelsController, except: [:new, :edit]
+    resources "/notification", NotificationsController, except: [:new, :edit]
+    resources "/country", CountriesController, except: [:new, :edit]
+    resources "/usertype", UsertypesController, except: [:new, :edit]
+    resources "/userrole", UserrolesController, except: [:new, :edit]
+    resources "/organization", OrganizationsController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

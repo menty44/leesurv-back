@@ -7,6 +7,8 @@ defmodule SurveyBackend.Usermanagement.Profiles do
     field :dob, :string
     field :image, :string
 
+    belongs_to :user, SurveyBackend.Usermanagement.Users
+
     timestamps()
   end
 

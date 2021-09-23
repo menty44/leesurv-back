@@ -443,4 +443,122 @@ defmodule SurveyBackend.UsermanagementTest do
       assert %Ecto.Changeset{} = Usermanagement.change_menus(menus)
     end
   end
+
+  describe "usertype" do
+    alias SurveyBackend.Usermanagement.Usertypes
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def usertypes_fixture(attrs \\ %{}) do
+      {:ok, usertypes} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Usermanagement.create_usertypes()
+
+      usertypes
+    end
+
+    test "list_usertype/0 returns all usertype" do
+      usertypes = usertypes_fixture()
+      assert Usermanagement.list_usertype() == [usertypes]
+    end
+
+    test "get_usertypes!/1 returns the usertypes with given id" do
+      usertypes = usertypes_fixture()
+      assert Usermanagement.get_usertypes!(usertypes.id) == usertypes
+    end
+
+    test "create_usertypes/1 with valid data creates a usertypes" do
+      assert {:ok, %Usertypes{} = usertypes} = Usermanagement.create_usertypes(@valid_attrs)
+      assert usertypes.name == "some name"
+    end
+
+    test "create_usertypes/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Usermanagement.create_usertypes(@invalid_attrs)
+    end
+
+    test "update_usertypes/2 with valid data updates the usertypes" do
+      usertypes = usertypes_fixture()
+      assert {:ok, %Usertypes{} = usertypes} = Usermanagement.update_usertypes(usertypes, @update_attrs)
+      assert usertypes.name == "some updated name"
+    end
+
+    test "update_usertypes/2 with invalid data returns error changeset" do
+      usertypes = usertypes_fixture()
+      assert {:error, %Ecto.Changeset{}} = Usermanagement.update_usertypes(usertypes, @invalid_attrs)
+      assert usertypes == Usermanagement.get_usertypes!(usertypes.id)
+    end
+
+    test "delete_usertypes/1 deletes the usertypes" do
+      usertypes = usertypes_fixture()
+      assert {:ok, %Usertypes{}} = Usermanagement.delete_usertypes(usertypes)
+      assert_raise Ecto.NoResultsError, fn -> Usermanagement.get_usertypes!(usertypes.id) end
+    end
+
+    test "change_usertypes/1 returns a usertypes changeset" do
+      usertypes = usertypes_fixture()
+      assert %Ecto.Changeset{} = Usermanagement.change_usertypes(usertypes)
+    end
+  end
+
+  describe "userrole" do
+    alias SurveyBackend.Usermanagement.Userroles
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    def userroles_fixture(attrs \\ %{}) do
+      {:ok, userroles} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Usermanagement.create_userroles()
+
+      userroles
+    end
+
+    test "list_userrole/0 returns all userrole" do
+      userroles = userroles_fixture()
+      assert Usermanagement.list_userrole() == [userroles]
+    end
+
+    test "get_userroles!/1 returns the userroles with given id" do
+      userroles = userroles_fixture()
+      assert Usermanagement.get_userroles!(userroles.id) == userroles
+    end
+
+    test "create_userroles/1 with valid data creates a userroles" do
+      assert {:ok, %Userroles{} = userroles} = Usermanagement.create_userroles(@valid_attrs)
+      assert userroles.name == "some name"
+    end
+
+    test "create_userroles/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Usermanagement.create_userroles(@invalid_attrs)
+    end
+
+    test "update_userroles/2 with valid data updates the userroles" do
+      userroles = userroles_fixture()
+      assert {:ok, %Userroles{} = userroles} = Usermanagement.update_userroles(userroles, @update_attrs)
+      assert userroles.name == "some updated name"
+    end
+
+    test "update_userroles/2 with invalid data returns error changeset" do
+      userroles = userroles_fixture()
+      assert {:error, %Ecto.Changeset{}} = Usermanagement.update_userroles(userroles, @invalid_attrs)
+      assert userroles == Usermanagement.get_userroles!(userroles.id)
+    end
+
+    test "delete_userroles/1 deletes the userroles" do
+      userroles = userroles_fixture()
+      assert {:ok, %Userroles{}} = Usermanagement.delete_userroles(userroles)
+      assert_raise Ecto.NoResultsError, fn -> Usermanagement.get_userroles!(userroles.id) end
+    end
+
+    test "change_userroles/1 returns a userroles changeset" do
+      userroles = userroles_fixture()
+      assert %Ecto.Changeset{} = Usermanagement.change_userroles(userroles)
+    end
+  end
 end

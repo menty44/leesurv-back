@@ -677,4 +677,196 @@ defmodule SurveyBackend.Usermanagement do
   def change_menus(%Menus{} = menus, attrs \\ %{}) do
     Menus.changeset(menus, attrs)
   end
+
+  alias SurveyBackend.Usermanagement.Usertypes
+
+  @doc """
+  Returns the list of usertype.
+
+  ## Examples
+
+      iex> list_usertype()
+      [%Usertypes{}, ...]
+
+  """
+  def list_usertype do
+    Repo.all(Usertypes)
+  end
+
+  @doc """
+  Gets a single usertypes.
+
+  Raises `Ecto.NoResultsError` if the Usertypes does not exist.
+
+  ## Examples
+
+      iex> get_usertypes!(123)
+      %Usertypes{}
+
+      iex> get_usertypes!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_usertypes!(id), do: Repo.get!(Usertypes, id)
+
+  @doc """
+  Creates a usertypes.
+
+  ## Examples
+
+      iex> create_usertypes(%{field: value})
+      {:ok, %Usertypes{}}
+
+      iex> create_usertypes(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_usertypes(attrs \\ %{}) do
+    %Usertypes{}
+    |> Usertypes.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a usertypes.
+
+  ## Examples
+
+      iex> update_usertypes(usertypes, %{field: new_value})
+      {:ok, %Usertypes{}}
+
+      iex> update_usertypes(usertypes, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_usertypes(%Usertypes{} = usertypes, attrs) do
+    usertypes
+    |> Usertypes.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a usertypes.
+
+  ## Examples
+
+      iex> delete_usertypes(usertypes)
+      {:ok, %Usertypes{}}
+
+      iex> delete_usertypes(usertypes)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_usertypes(%Usertypes{} = usertypes) do
+    Repo.delete(usertypes)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking usertypes changes.
+
+  ## Examples
+
+      iex> change_usertypes(usertypes)
+      %Ecto.Changeset{data: %Usertypes{}}
+
+  """
+  def change_usertypes(%Usertypes{} = usertypes, attrs \\ %{}) do
+    Usertypes.changeset(usertypes, attrs)
+  end
+
+  alias SurveyBackend.Usermanagement.Userroles
+
+  @doc """
+  Returns the list of userrole.
+
+  ## Examples
+
+      iex> list_userrole()
+      [%Userroles{}, ...]
+
+  """
+  def list_userrole do
+    Repo.all(Userroles)
+  end
+
+  @doc """
+  Gets a single userroles.
+
+  Raises `Ecto.NoResultsError` if the Userroles does not exist.
+
+  ## Examples
+
+      iex> get_userroles!(123)
+      %Userroles{}
+
+      iex> get_userroles!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_userroles!(id), do: Repo.get!(Userroles, id)
+
+  @doc """
+  Creates a userroles.
+
+  ## Examples
+
+      iex> create_userroles(%{field: value})
+      {:ok, %Userroles{}}
+
+      iex> create_userroles(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_userroles(attrs \\ %{}) do
+    %Userroles{}
+    |> Userroles.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a userroles.
+
+  ## Examples
+
+      iex> update_userroles(userroles, %{field: new_value})
+      {:ok, %Userroles{}}
+
+      iex> update_userroles(userroles, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_userroles(%Userroles{} = userroles, attrs) do
+    userroles
+    |> Userroles.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a userroles.
+
+  ## Examples
+
+      iex> delete_userroles(userroles)
+      {:ok, %Userroles{}}
+
+      iex> delete_userroles(userroles)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_userroles(%Userroles{} = userroles) do
+    Repo.delete(userroles)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking userroles changes.
+
+  ## Examples
+
+      iex> change_userroles(userroles)
+      %Ecto.Changeset{data: %Userroles{}}
+
+  """
+  def change_userroles(%Userroles{} = userroles, attrs \\ %{}) do
+    Userroles.changeset(userroles, attrs)
+  end
 end

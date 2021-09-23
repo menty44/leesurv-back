@@ -7,6 +7,8 @@ defmodule SurveyBackend.Communication.Emails do
     field :message, :string
     field :subject, :string
 
+    belongs_to :users, SurveyBackend.Usermanagement.Users
+
     timestamps()
   end
 
